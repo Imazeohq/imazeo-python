@@ -1,6 +1,6 @@
 # SDK release procedure (`imazeo` on PyPI)
 
-Independent repository: [manishbalodia/imazeo-python](https://github.com/manishbalodia/imazeo-python).  
+Independent repository: [Imazeohq/imazeo-python](https://github.com/Imazeohq/imazeo-python).  
 PyPI project: [`imazeo`](https://pypi.org/project/imazeo/).  
 Supported API prefix: `v1`. SemVer lives in this repo (`pyproject.toml` + `src/imazeo/version.py`).
 
@@ -24,7 +24,7 @@ Confirm the wheel/sdist contain the intended files (no API keys or `.env`).
 
 ## Manual publish (first release `1.0.0`)
 
-1. Create empty GitHub repo `manishbalodia/imazeo-python` and push this tree to `main`.
+1. Create empty GitHub repo `Imazeohq/imazeo-python` and push this tree to `main`.
 2. Clean `main`, equal to the revision you verified.
 3. `git tag v1.0.0` and push `main` + `v1.0.0`.
 4. Create a PyPI account (or log in), enable 2FA, and create an **API token**

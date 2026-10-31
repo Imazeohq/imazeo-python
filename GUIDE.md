@@ -9,7 +9,7 @@ pip install imazeo
 ```
 
 Package: [`imazeo`](https://pypi.org/project/imazeo/) on PyPI.
-Source: [manishbalodia/imazeo-python](https://github.com/manishbalodia/imazeo-python).
+Source: [Imazeohq/imazeo-python](https://github.com/Imazeohq/imazeo-python).
 Use the package README for runtime details.
 
 Create a Customer account, complete required verification, create a project and

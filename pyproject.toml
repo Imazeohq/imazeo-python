@@ -36,9 +36,9 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://pypi.org/project/imazeo/"
-Documentation = "https://github.com/manishbalodia/imazeo-python#readme"
-Repository = "https://github.com/manishbalodia/imazeo-python"
-Issues = "https://github.com/manishbalodia/imazeo-python/issues"
+Documentation = "https://github.com/Imazeohq/imazeo-python#readme"
+Repository = "https://github.com/Imazeohq/imazeo-python"
+Issues = "https://github.com/Imazeohq/imazeo-python/issues"
 
 [project.optional-dependencies]
 dev = [

@@ -10,7 +10,7 @@ Official **server-side** Python SDK for Imazeo.
 | Supported APIs | `v1`                            |
 | Runtime        | Python **3.10+** (sync `httpx`) |
 | Registry       | [PyPI](https://pypi.org/project/imazeo/) |
-| Source         | [GitHub](https://github.com/manishbalodia/imazeo-python) |
+| Source         | [GitHub](https://github.com/Imazeohq/imazeo-python) |
 
 > **Security:** Secret API keys (`X-API-Key`) are for trusted servers only.
 > Do **not** ship this client with a secret key in browsers or client apps.
