@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "imazeo"
-version = "1.0.0"
+version = "1.0.1"
 description = "Official Imazeo Python SDK for server-side image, transform, PDF, QR, and barcode APIs"
 readme = "README.md"
 license = "MIT"

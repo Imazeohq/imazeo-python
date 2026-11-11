@@ -1,7 +1,7 @@
 {
   "name": "imazeo-python",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Release tooling for the Imazeo Python SDK (not an npm package)",
   "scripts": {
     "release": "node scripts/release.mjs"

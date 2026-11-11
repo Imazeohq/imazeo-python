@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Final, Literal
 
-SDK_VERSION: Final = "1.0.0"
+SDK_VERSION: Final = "1.0.1"
 DEFAULT_API_VERSION: Final = "v1"
 SUPPORTED_API_VERSIONS: Final = ("v1",)
 ApiVersion = Literal["v1"]
