@@ -1,50 +1,44 @@
 # SDK release procedure (`imazeo` on PyPI)
 
 Independent repository: [Imazeohq/imazeo-python](https://github.com/Imazeohq/imazeo-python).  
-PyPI project: [`imazeo`](https://pypi.org/project/imazeo/).  
-Supported API prefix: `v1`. SemVer lives in this repo (`pyproject.toml` + `src/imazeo/version.py`).
+PyPI package: [`imazeo`](https://pypi.org/project/imazeo/).  
+Supported API prefix: `v1`. SemVer lives in `pyproject.toml`, `SDK_VERSION`, and `package.json`
+(kept in sync by the release script).
 
-Do not publish automatically from CI until a protected release workflow is added.
 Never overwrite a published version; ship a patch instead.
 
-## Pre-publish checks
+## One-time: Trusted Publishing
+
+On pypi.org (personal account that owns the project) → **imazeo** → **Publishing**:
+
+| Field | Value |
+| --- | --- |
+| Owner | `Imazeohq` |
+| Repository | `imazeo-python` |
+| Workflow name | `publish.yml` |
+| Environment | leave empty |
+
+## Release (PowerShell)
+
+Commit your work on `main` first (clean working tree required). One-time: `npm install`.
 
 ```powershell
-cd D:\projects\imazeo\sdk-python
-python scripts\check-release.py
-python -m pip install ".[dev]" build twine
-python -m pytest
-python -m build
-python -m twine check dist\*
+$env:RELEASE_MODE = "true"
+npm run release
 ```
 
-Optional: `pip-audit` on the installed package environment.
+You will be prompted for version bump and GitHub Release.  
+This syncs versions, commits, tags `vX.Y.Z`, and pushes.  
+**Publish PyPI** then uploads with OIDC.
 
-Confirm the wheel/sdist contain the intended files (no API keys or `.env`).
+## Release from GitHub only
 
-## Manual publish (first release `1.0.0`)
+If the version bump is already on `main`:
 
-1. Create empty GitHub repo `Imazeohq/imazeo-python` and push this tree to `main`.
-2. Clean `main`, equal to the revision you verified.
-3. `git tag v1.0.0` and push `main` + `v1.0.0`.
-4. Create a PyPI account (or log in), enable 2FA, and create an **API token**
-   (project-scoped after first upload, or account token for the first publish).
-5. Publish:
-   ```powershell
-   python -m twine upload dist\*
-   ```
-   Or Trusted Publishing from GitHub Actions once configured.
-6. Verify: `pip index versions imazeo` / https://pypi.org/project/imazeo/
+1. **Releases** → Draft a new release → tag `vX.Y.Z` → Publish  
+   or
+2. **Actions** → **Publish PyPI** → **Run workflow**
 
 ## After publish
 
-Record the Git revision and check results. Smoke-install in a temp venv:
-
-```powershell
-python -m venv .venv-smoke
-.\.venv-smoke\Scripts\Activate.ps1
-pip install imazeo==1.0.0
-```
-
-If the release is bad, yank per PyPI policy and ship a reviewed patch — do not
-reupload the same version.
+Verify: https://pypi.org/project/imazeo/

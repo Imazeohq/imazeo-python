@@ -23,7 +23,8 @@ Integration contract and learning path: [GUIDE.md](GUIDE.md).
 pip install imazeo
 ```
 
-Requires Python 3.10+. Create a project API key in the Imazeo customer portal.
+Requires Python 3.10+. Create a project API key in the
+[Imazeo Customer portal](https://app.imazeo.com).
 Default API origin is `https://api.imazeo.com` (override with `base_url` when needed).
 
 ## Learning path
@@ -168,15 +169,13 @@ pytest
 
 MIT
 
-## Media contract update — 2026-10-02
+## Barcode and PDF notes
 
-Barcode generation requires `type` and string `content`; optional `format` is
-`png` or `svg` (default `png`), and `includeText` is a boolean (default `true`).
-The old `data`, `output` and `includetext` fields are removed before release.
-PDF merge sends repeated `file` parts in order. Omit optional fields for defaults;
-JSON numbers/booleans are not coerced and top-level optional nulls are rejected.
-Barcode scale and image hue are integers. Methods retain language-specific names.
-The reviewed API-key-only contract is bundled in `openapi/backend.json`.
+Barcode generation requires `type` and string `content`. Optional `format` is
+`png` or `svg` (default `png`); `includeText` defaults to `true`.
+PDF merge uploads files in order as repeated multipart `file` parts.
+Omit optional fields to use API defaults. Integer fields such as barcode scale
+and image hue must be integers.
 
 ```python
 client.barcodes.generate({'type': 'code128', 'content': 'IMAZEO-2026', 'format': 'svg', 'includeText': False})

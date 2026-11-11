@@ -25,7 +25,7 @@ def main() -> None:
 
     with Imazeo(
         api_key=api_key,
-        base_url=os.environ.get("IMAZEO_BASE_URL", "http://localhost:3001"),
+        base_url=os.environ.get("IMAZEO_BASE_URL", "https://api.imazeo.com"),
         project_id=os.environ.get("IMAZEO_PROJECT_ID"),
     ) as client:
         image = client.images.upload(

@@ -15,6 +15,7 @@ from imazeo import (
     ValidationError,
 )
 from imazeo._http import normalize_base_url
+from imazeo.version import SDK_VERSION
 
 
 def _json_response(
@@ -66,7 +67,8 @@ def test_sends_x_api_key_and_user_agent() -> None:
     def handler(request: httpx.Request) -> httpx.Response:
         assert str(request.url) == "https://api.example.com/v1/api-key/context"
         assert request.headers.get("X-API-Key") == "secret-key"
-        assert request.headers.get("User-Agent", "").startswith("Imazeo-Python/1.0.0")
+        assert request.headers.get("User-Agent", "").startswith(f"Imazeo-Python/{SDK_VERSION}")
+
         assert "Authorization" not in request.headers
         return _json_response(
             {"projectId": "proj_1", "keyId": "key_1"}
