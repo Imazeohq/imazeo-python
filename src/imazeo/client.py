@@ -3,6 +3,12 @@
 from __future__ import annotations
 
 from imazeo._http import HttpTransport, create_transport_config
+from imazeo.resources.credits import CreditsResource
+from imazeo.resources.operations import OperationsResource
+from imazeo.resources.outputs import OutputsResource
+from imazeo.resources.dynamic_codes import DynamicCodesResource
+from imazeo.resources.artifacts import ArtifactsResource
+from imazeo.resources.conversions import ConversionsResource
 from imazeo.resources.barcodes import BarcodesResource
 from imazeo.resources.context import ContextResource
 from imazeo.resources.images import ImagesResource
@@ -59,6 +65,12 @@ class Imazeo:
         self.transforms = TransformsResource(self._http, self.resolve_project_id)
         self.qr = QrResource(self._http, self.resolve_project_id)
         self.barcodes = BarcodesResource(self._http, self.resolve_project_id)
+        self.credits = CreditsResource(self._http, self.resolve_project_id)
+        self.operations = OperationsResource(self._http, self.resolve_project_id)
+        self.outputs = OutputsResource(self._http, self.resolve_project_id)
+        self.dynamic_codes = DynamicCodesResource(self._http, self.resolve_project_id)
+        self.artifacts = ArtifactsResource(self._http, self.resolve_project_id)
+        self.conversions = ConversionsResource(self._http, self.resolve_project_id)
         self.pdf = PdfResource(self._http, self.resolve_project_id)
 
     @classmethod

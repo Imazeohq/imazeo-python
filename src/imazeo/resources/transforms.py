@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+from imazeo.resources.project import processing_headers
 from imazeo._http import HttpTransport, build_query
 from imazeo.types import (
     BinaryResult,
@@ -23,7 +24,7 @@ class TransformsResource:
         self._http = http
         self._project_id = project_id
 
-    def create(self, request: TransformRequest) -> BinaryResult:
+    def create(self, request: TransformRequest, *, idempotency_key: str | None = None, quote_id: str | None = None) -> BinaryResult:
         if not request.get("imageId") and not request.get("url"):
             raise ValueError("Exactly one of imageId or url is required")
         if request.get("imageId") and request.get("url"):
@@ -34,7 +35,7 @@ class TransformsResource:
             "POST",
             url,
             body=request,
-            headers={"Content-Type": "application/json", "Accept": "*/*"},
+            headers={"Content-Type": "application/json", "Accept": "*/*", **processing_headers(idempotency_key, quote_id)},
         )
 
     def list(self, params: PageParams | None = None) -> Page[TransformationRecord]:

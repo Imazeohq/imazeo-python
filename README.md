@@ -2,14 +2,14 @@
 
 Official **server-side** Python SDK for Imazeo.
 
-|                |                                 |
-| -------------- | ------------------------------- |
-| Package        | `imazeo`                        |
-| SDK version    | `1.0.0`                         |
-| Default API    | `v1`                            |
-| Supported APIs | `v1`                            |
-| Runtime        | Python **3.10+** (sync `httpx`) |
-| Registry       | [PyPI](https://pypi.org/project/imazeo/) |
+|                |                                                     |
+| -------------- | --------------------------------------------------- |
+| Package        | `imazeo`                                            |
+| SDK version    | `1.0.1`                                             |
+| Default API    | `v1`                                                |
+| Supported APIs | `v1`                                                |
+| Runtime        | Python **3.10+** (sync `httpx`)                     |
+| Registry       | [PyPI](https://pypi.org/project/imazeo/)            |
 | Source         | [GitHub](https://github.com/Imazeohq/imazeo-python) |
 
 > **Security:** Secret API keys (`X-API-Key`) are for trusted servers only.
@@ -77,14 +77,20 @@ Sends `X-API-Key` only. Never send `Authorization` together with an API key
 
 ## Resources
 
-| Resource            | Methods                                                                          |
-| ------------------- | -------------------------------------------------------------------------------- |
-| `client.context`    | `get()` → project/key IDs                                                        |
-| `client.images`     | `upload`, `list` (`page`/`limit`/`q`), `get`, `delete`, `download`               |
-| `client.transforms` | `create`, `list`, `get`, `download` (`if_none_match` → `not_modified`), `delete` |
-| `client.qr`         | `generate`                                                                       |
-| `client.barcodes`   | `generate`                                                                       |
-| `client.pdf`        | `info`, `render`, `merge`, `extract`                                             |
+| Resource               | Methods                                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------------------------------- |
+| `client.context`       | `get()` → project/key IDs                                                                             |
+| `client.images`        | `upload`, `list` (`page`/`limit`/`q`), `get`, `delete`, `download`                                    |
+| `client.transforms`    | `create`, `list`, `get`, `download` (`if_none_match` → `not_modified`), `delete`                      |
+| `client.qr`            | `generate`                                                                                            |
+| `client.barcodes`      | `generate`                                                                                            |
+| `client.pdf`           | `info`, `render`, `merge`, `extract`                                                                  |
+| `client.credits`       | Quote processing credits for an operation and measurable units                                        |
+| `client.operations`    | Get status, look up by kind/key, and recover a temporary result                                       |
+| `client.conversions`   | DOCX, XLSX, PPTX and website jobs: capabilities, submit, list, lookup, get, cancel, download and save |
+| `client.dynamic_codes` | Capabilities, create, list, get, edit, scan analytics and CSV export                                  |
+| `client.artifacts`     | Save preview bytes, list, get, download and delete private artifacts                                  |
+| `client.outputs`       | List project outputs and retrieve counts by type                                                      |
 
 ### Upload + transform
 

@@ -241,7 +241,7 @@ class HttpTransport:
         method: str,
         url: str,
         *,
-        files: list[tuple[str, tuple[str, bytes, str]]],
+        files: list[tuple[str, tuple[str | None, bytes, str]]],
         upload_length: int | None = None,
         headers: dict[str, str] | None = None,
         timeout_ms: int | None = None,
@@ -263,7 +263,7 @@ class HttpTransport:
         method: str,
         url: str,
         *,
-        files: list[tuple[str, tuple[str, bytes, str]]],
+        files: list[tuple[str, tuple[str | None, bytes, str]]],
         upload_length: int | None = None,
         headers: dict[str, str] | None = None,
         timeout_ms: int | None = None,
@@ -308,7 +308,7 @@ class HttpTransport:
         *,
         headers: dict[str, str],
         content: bytes | None = None,
-        files: list[tuple[str, tuple[str, bytes, str]]] | None = None,
+        files: list[tuple[str, tuple[str | None, bytes, str]]] | None = None,
         timeout_ms: int | None = None,
     ) -> httpx.Response:
         try:
