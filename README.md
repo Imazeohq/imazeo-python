@@ -5,7 +5,7 @@ Official **server-side** Python SDK for Imazeo.
 |                |                                                     |
 | -------------- | --------------------------------------------------- |
 | Package        | `imazeo`                                            |
-| SDK version    | `1.0.1`                                             |
+| SDK version    | `1.1.0`                                             |
 | Default API    | `v1`                                                |
 | Supported APIs | `v1`                                                |
 | Runtime        | Python **3.10+** (sync `httpx`)                     |
@@ -155,7 +155,7 @@ except ImazeoError as error:
 ## API version vs package version
 
 - **API** path version: `v1` (configured via `api_version`)
-- **SDK** SemVer: `1.0.0`
+- **SDK** SemVer: `1.1.0`
 
 `Imazeo.api_compatibility()` reports supported API versions.
 
