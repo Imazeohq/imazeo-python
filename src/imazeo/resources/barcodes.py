@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+from imazeo.resources.project import processing_headers
 from imazeo._http import HttpTransport
 from imazeo.types import BarcodeGenerateInput, BinaryResult
 from imazeo.version import LIGHT_TIMEOUT_MS
@@ -18,13 +19,13 @@ class BarcodesResource:
         self._http = http
         self._project_id = project_id
 
-    def generate(self, input: BarcodeGenerateInput) -> BinaryResult:
+    def generate(self, input: BarcodeGenerateInput, *, idempotency_key: str | None = None, quote_id: str | None = None) -> BinaryResult:
         project_id = self._project_id()
         url = self._http.path("projects", project_id, "tools", "barcode")
         return self._http.request_binary(
             "POST",
             url,
             body=input,
-            headers={"Content-Type": "application/json", "Accept": "*/*"},
+            headers={"Content-Type": "application/json", "Accept": "*/*", **processing_headers(idempotency_key, quote_id)},
             timeout_ms=LIGHT_TIMEOUT_MS,
         )

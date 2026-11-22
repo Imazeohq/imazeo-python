@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 
+from imazeo.resources.project import processing_headers
 from imazeo._http import HttpTransport, JsonSuccess, build_query, prepare_upload
 from imazeo.types import (
     BinaryResult,
@@ -31,6 +32,8 @@ class PdfResource:
         source: UploadSource,
         *,
         filename: str | None = None,
+        idempotency_key: str | None = None,
+        quote_id: str | None = None,
     ) -> PdfInfo:
         project_id = self._project_id()
         prepared = prepare_upload(
@@ -46,6 +49,7 @@ class PdfResource:
             "POST",
             url,
             files=files,
+            headers=processing_headers(idempotency_key, quote_id),
             timeout_ms=PDF_TIMEOUT_MS,
         )
         return res.data  # type: ignore[no-any-return]
@@ -56,6 +60,8 @@ class PdfResource:
         options: PdfRenderOptions | None = None,
         *,
         filename: str | None = None,
+        idempotency_key: str | None = None,
+        quote_id: str | None = None,
     ) -> BinaryResult | PdfMultiPageResult:
         options = options or {}
         project_id = self._project_id()
@@ -90,6 +96,7 @@ class PdfResource:
             "POST",
             url,
             files=files,
+            headers=processing_headers(idempotency_key, quote_id),
             timeout_ms=PDF_TIMEOUT_MS,
         )
         if isinstance(result, JsonSuccess):
@@ -100,7 +107,7 @@ class PdfResource:
             )
         return result
 
-    def merge(self, sources: Sequence[UploadSource]) -> BinaryResult:
+    def merge(self, sources: Sequence[UploadSource], *, idempotency_key: str | None = None, quote_id: str | None = None) -> BinaryResult:
         if not sources:
             raise ValueError("At least one PDF is required")
         project_id = self._project_id()
@@ -119,6 +126,7 @@ class PdfResource:
             "POST",
             url,
             files=files,
+            headers=processing_headers(idempotency_key, quote_id),
             timeout_ms=PDF_TIMEOUT_MS,
         )
         if isinstance(result, JsonSuccess):
@@ -131,6 +139,8 @@ class PdfResource:
         options: PdfExtractOptions,
         *,
         filename: str | None = None,
+        idempotency_key: str | None = None,
+        quote_id: str | None = None,
     ) -> BinaryResult:
         project_id = self._project_id()
         prepared = prepare_upload(
@@ -156,6 +166,7 @@ class PdfResource:
             "POST",
             url,
             files=files,
+            headers=processing_headers(idempotency_key, quote_id),
             timeout_ms=PDF_TIMEOUT_MS,
         )
         if isinstance(result, JsonSuccess):

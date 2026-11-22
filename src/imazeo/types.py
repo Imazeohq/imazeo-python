@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from typing import Generic, Literal, TypeVar, TypedDict
+from imazeo.api_types import CodeDesign
 
 T = TypeVar("T")
 
@@ -179,6 +180,8 @@ class _QrRequired(TypedDict):
 
 
 class QrGenerateInput(_QrRequired, total=False):
+    transparent: bool
+    design: CodeDesign
     format: QrFormat
     size: int
     margin: int
@@ -193,6 +196,8 @@ class _BarcodeRequired(TypedDict):
 
 
 class BarcodeGenerateInput(_BarcodeRequired, total=False):
+    transparent: bool
+    design: CodeDesign
     format: BarcodeImageFormat
     scale: int
     height: int
